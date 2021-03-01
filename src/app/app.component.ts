@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote, QuoteList } from './interfaces';
+import { Quote } from './interfaces';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title: string = 'fcc-random-quote-machine-angular';
   loading: boolean = true;
   quote!: Quote;
-  quoteList!: QuoteList;
+  quoteList!: Quote[];
   tweetURL!: string;
   getNewQuote: () => void = (): void => {
     const idx = Math.floor(Math.random() * this.quoteList.length);
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     this.setLoading(false);
   }
 
-  setQuoteList(quoteList: QuoteList): void {
+  setQuoteList(quoteList: Quote[]): void {
     this.quoteList = quoteList;
   }
 
