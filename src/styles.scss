@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 
-/* colors */
-$white: #fafafa;
 $blue: #58f;
-$black: #3f3f3f;
 
 html,
 body {
@@ -20,34 +17,4 @@ body {
   align-items: center;
   background-color: $blue;
   height: 100vh;
-}
-
-#loading {
-  color: $white;
-  font-family: 'Amiri', serif;
-}
-
-#quote-box {
-  padding: 2em;
-  background-color: $white;
-  margin: 20%;
-  border-radius: 10px;
-  color: $black;
-
-  #text {
-    font-family: 'Amiri', serif;
-  }
-  #author {
-    font-family: 'Neucha', cursive;
-    font-size: 2.5em;
-  }
-  .btn-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
-    #tweet-quote {
-      margin-left: 1em;
-    }
-  }
 }
