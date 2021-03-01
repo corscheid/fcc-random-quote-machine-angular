@@ -6,7 +6,8 @@ $white: #fafafa;
 $blue: #58f;
 $black: #3f3f3f;
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -19,6 +20,11 @@ html, body {
   align-items: center;
   background-color: $blue;
   height: 100vh;
+}
+
+#loading {
+  color: $white;
+  font-family: 'Amiri', serif;
 }
 
 #quote-box {
@@ -39,7 +45,7 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    
+
     #tweet-quote {
       margin-left: 1em;
     }

@@ -7,7 +7,7 @@ import { Quote, QuoteList } from './interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  loading!: boolean;
+  loading: boolean = true;
   quote!: Quote;
   quoteList!: QuoteList;
   tweetURL!: string;
