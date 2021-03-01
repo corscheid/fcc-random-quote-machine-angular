@@ -7,6 +7,7 @@ import { Quote, QuoteList } from './interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  title: string = 'fcc-random-quote-machine-angular';
   loading: boolean = true;
   quote!: Quote;
   quoteList!: QuoteList;
