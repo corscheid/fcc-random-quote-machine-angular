@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   getNewQuote: () => void = (): void => {
     const idx = Math.floor(Math.random() * this.quoteList.length);
     const newQuote = this.quoteList[idx];
-    this.setQuote(newQuote);
+    this.quote = newQuote;
   }
 
   constructor() { }
@@ -30,22 +30,10 @@ export class AppComponent implements OnInit {
     const quotes = await response.json();
     const idx = Math.floor(Math.random() * quotes.quotes.length);
     const newQuote = quotes.quotes[idx];
-    this.setQuoteList(quotes.quotes);
-    this.setQuote(newQuote);
+    this.quoteList = quotes.quotes;
+    this.quote = newQuote;
     this.setTweetURL(newQuote);
-    this.setLoading(false);
-  }
-
-  setQuoteList(quoteList: Quote[]): void {
-    this.quoteList = quoteList;
-  }
-
-  setQuote(quote: Quote): void {
-    this.quote = quote;
-  }
-
-  setLoading(loading: boolean): void {
-    this.loading = loading;
+    this.loading = false;
   }
 
   setTweetURL(quote: Quote): void {
