@@ -10,4 +10,6 @@ export class QuoteBoxComponent {
   @Input() quote!: string;
   @Input() tweetURL!: string;
   @Input() getNewQuote!: () => void;
+
+  constructor() { }
 }
