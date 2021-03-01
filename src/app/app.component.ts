@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from './interfaces';
+
+interface Quote {
+  quote: string;
+  author: string;
+};
 
 @Component({
   selector: 'app-root',
