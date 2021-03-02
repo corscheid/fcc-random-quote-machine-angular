@@ -25,3 +25,10 @@ $black: #3f3f3f;
     }
   }
 }
+
+@media only screen and (max-width: 480px) {
+  #quote-box {
+    margin: 0;
+    overflow-y: auto;
+  }
+}
