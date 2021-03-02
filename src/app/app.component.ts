@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 interface Quote {
   quote: string;
   author: string;
-};
+}
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,6 @@ interface Quote {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title: string = 'fcc-random-quote-machine-angular';
   loading: boolean = true;
   quote!: Quote;
   quoteList!: Quote[];
