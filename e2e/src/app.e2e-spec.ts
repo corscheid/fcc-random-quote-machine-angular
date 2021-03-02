@@ -59,29 +59,29 @@ describe('workspace-project App', () => {
         level: logging.Level.SEVERE,
       } as logging.Entry));
     });
-  })
+  }),
 
-  describe('Layout', () => {
-    let page: AppPage;
+    describe('Layout', () => {
+      let page: AppPage;
 
-    beforeEach(() => {
-      page = new AppPage();
-    });
+      beforeEach(() => {
+        page = new AppPage();
+      });
 
-    it('should display the quote box in the center horizontally', async () => {
-      const htmlElementBounds = await page.getHtmlElementBounds();
-      const quoteBoxBounds = await page.getQuoteBoxBounds();
-      const left = quoteBoxBounds.x0 - htmlElementBounds.x0;
-      const right = htmlElementBounds.x1 - quoteBoxBounds.x1;
-      expect(left).toEqual(right);
-    });
+      it('should display the quote box in the center horizontally', async () => {
+        const htmlElementBounds = await page.getHtmlElementBounds();
+        const quoteBoxBounds = await page.getQuoteBoxBounds();
+        const left = quoteBoxBounds.x0 - htmlElementBounds.x0;
+        const right = htmlElementBounds.x1 - quoteBoxBounds.x1;
+        expect(Math.abs(left - right)).toBeLessThan(20);
+      });
 
-    afterEach(async () => {
-      // Assert that there are no errors emitted from the browser
-      const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-      expect(logs).not.toContain(jasmine.objectContaining({
-        level: logging.Level.SEVERE,
-      } as logging.Entry));
-    });
-  })
+      afterEach(async () => {
+        // Assert that there are no errors emitted from the browser
+        const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+        expect(logs).not.toContain(jasmine.objectContaining({
+          level: logging.Level.SEVERE,
+        } as logging.Entry));
+      });
+    })
 });
