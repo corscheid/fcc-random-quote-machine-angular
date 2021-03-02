@@ -1,5 +1,20 @@
 import { browser, by, element, ElementFinder } from 'protractor';
 
+interface ISize {
+  width: number;
+  height: number;
+}
+
+interface ILocation {
+  x: number;
+  y: number;
+}
+
+interface ElementXPair {
+  x0: number;
+  x1: number;
+}
+
 export class AppPage {
   async navigateTo(): Promise<unknown> {
     return browser.get(browser.baseUrl);
@@ -51,22 +66,22 @@ export class AppPage {
     return tweetButtonURL;
   }
 
-  async getHtmlElementBounds() {
+  async getHtmlElementBounds(): Promise<ElementXPair> {
     let htmlElement: ElementFinder = element(by.tagName('html'));
-    let htmlElementSize: { width: number, height: number } = await htmlElement.getSize();
-    let htmlElementLocation: { x: number, y: number } = await htmlElement.getLocation();
-    let htmlElementBounds: { x0: number, x1: number } = {
+    let htmlElementSize: ISize = await htmlElement.getSize();
+    let htmlElementLocation: ILocation = await htmlElement.getLocation();
+    let htmlElementBounds: ElementXPair = {
       x0: htmlElementLocation.x,
       x1: htmlElementLocation.x + htmlElementSize.width
     };
     return htmlElementBounds;
   }
 
-  async getQuoteBoxBounds() {
+  async getQuoteBoxBounds(): Promise<ElementXPair> {
     let quoteBox: ElementFinder = element(by.css('app-root app-quote-box #quote-box'));
-    let quoteBoxSize: { width: number, height: number } = await quoteBox.getSize();
-    let quoteBoxLocation: { x: number, y: number } = await quoteBox.getLocation();
-    let quoteBoxBounds: { x0: number, x1: number } = {
+    let quoteBoxSize: ISize = await quoteBox.getSize();
+    let quoteBoxLocation: ILocation = await quoteBox.getLocation();
+    let quoteBoxBounds: ElementXPair = {
       x0: quoteBoxLocation.x,
       x1: quoteBoxLocation.x + quoteBoxSize.width,
     };
