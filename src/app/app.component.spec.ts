@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { QuoteBoxComponent } from './quote-box/quote-box.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        QuoteBoxComponent
       ],
     }).compileComponents();
   });
@@ -16,16 +18,23 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'fcc-random-quote-machine-angular'`, () => {
+  it('should render loading text when loading', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('fcc-random-quote-machine-angular');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('fcc-random-quote-machine-angular app is running!');
+    expect(app.loading).toBeTrue();
+    expect(compiled.querySelector('#loading').textContent).toEqual('loading...');
+
+  });
+
+  it('should render QuoteBoxComponent after loading', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    await app.fetchData();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(app.loading).toBeFalse();
+    expect(compiled.querySelector('app-root app-quote-box')).toBeDefined();
   });
 });
