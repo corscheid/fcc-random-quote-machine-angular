@@ -2,7 +2,11 @@
   <h1 id="text"><i class="fa fa-quote-left"></i> {{ quote }}</h1>
   <p id="author">- {{ author }}</p>
   <div class="btn-row">
-    <button class="btn btn-primary" id="new-quote" (click)="getNewQuote()">
+    <button
+      class="btn btn-primary"
+      id="new-quote"
+      (click)="getNewQuoteClick.emit()"
+    >
       New quote
     </button>
     <a

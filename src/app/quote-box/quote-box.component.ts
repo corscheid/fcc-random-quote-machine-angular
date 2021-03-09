@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-quote-box',
@@ -9,7 +9,7 @@ export class QuoteBoxComponent {
   @Input() author!: string;
   @Input() quote!: string;
   @Input() tweetURL!: string;
-  @Input() getNewQuote!: () => void;
+  @Output() getNewQuoteClick: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 }
