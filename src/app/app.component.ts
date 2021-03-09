@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Quote {
-  quote: string;
-  author: string;
-}
+import { QuoteService } from './service/quote.service';
+import { Quote } from './interface/Quote';
 
 @Component({
   selector: 'app-root',
@@ -13,34 +10,19 @@ interface Quote {
 export class AppComponent implements OnInit {
   loading: boolean = true;
   quote!: Quote;
-  quoteList!: Quote[];
   tweetURL!: string;
 
-  constructor() { }
+  constructor(public quoteService: QuoteService) { }
 
   ngOnInit() {
-    this.fetchData();
+    this.getNewQuote();
   }
 
-  getNewQuote(): void {
-    const idx = Math.floor(Math.random() * this.quoteList.length);
-    const newQuote = this.quoteList[idx];
-    this.quote = newQuote;
-  }
-
-  async fetchData(): Promise<void> {
-    const quotesURL = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
-    const response = await fetch(quotesURL);
-    const quotes = await response.json();
-    const idx = Math.floor(Math.random() * quotes.quotes.length);
-    const newQuote = quotes.quotes[idx];
-    this.quoteList = quotes.quotes;
-    this.quote = newQuote;
-    this.setTweetURL(newQuote);
+  async getNewQuote() {
+    await this.quoteService.fetchData();
+    this.quoteService.getNewQuote();
+    this.quote = this.quoteService.getQuote();
+    this.tweetURL = this.quoteService.getTweetURL();
     this.loading = false;
-  }
-
-  setTweetURL(quote: Quote): void {
-    this.tweetURL = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote.quote} --${quote.author}`
   }
 }
