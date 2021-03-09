@@ -15,16 +15,17 @@ export class AppComponent implements OnInit {
   quote!: Quote;
   quoteList!: Quote[];
   tweetURL!: string;
-  getNewQuote: () => void = (): void => {
-    const idx = Math.floor(Math.random() * this.quoteList.length);
-    const newQuote = this.quoteList[idx];
-    this.quote = newQuote;
-  }
 
   constructor() { }
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  getNewQuote(): void {
+    const idx = Math.floor(Math.random() * this.quoteList.length);
+    const newQuote = this.quoteList[idx];
+    this.quote = newQuote;
   }
 
   async fetchData(): Promise<void> {
